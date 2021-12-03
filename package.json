@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon app.js"
   },
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/AmrMonier/tasks-manager-app/issues"
   },
-  "homepage": "https://github.com/AmrMonier/tasks-manager-app#readme"
+  "homepage": "https://github.com/AmrMonier/tasks-manager-app#readme",
+  "dependencies": {
+    "mongoose": "^6.0.14",
+    "validator": "^13.7.0"
+  }
 }

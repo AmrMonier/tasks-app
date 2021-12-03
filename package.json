@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/AmrMonier/tasks-manager-app#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "mongoose": "^6.0.14",
     "validator": "^13.7.0"
   }

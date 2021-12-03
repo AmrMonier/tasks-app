@@ -1,0 +1,19 @@
+{
+  "name": "tasks-manager-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmrMonier/tasks-manager-app.git"
+  },
+  "author": "Amr Monier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmrMonier/tasks-manager-app/issues"
+  },
+  "homepage": "https://github.com/AmrMonier/tasks-manager-app#readme"
+}

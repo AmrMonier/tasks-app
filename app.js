@@ -5,6 +5,7 @@ import cors from "cors";
 
 import userRoutes from './src/routes/userRoutes.js'
 import tasksRoutes from './src/routes/tasksRoutes.js'
+import authenticationRoutes from './src/routes/authenticationRoutes.js'
 
 mongoose.then(() => {
     console.log('connected to the Database');
@@ -14,6 +15,7 @@ mongoose.then(() => {
     app.use(cors())
     app.use('/users', userRoutes)
     app.use('/tasks', tasksRoutes)
+    app.use('/auth', authenticationRoutes)
 
     app.listen(PORT, () => console.log(`App running on http://localhost:${PORT}`))
 }).catch(err => {

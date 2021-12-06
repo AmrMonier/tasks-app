@@ -1,7 +1,9 @@
 import User from "../models/User.js";
+import cryptography from "../utilities/cryptography.js";
 class UserController {
   async create(req, res) {
     const data = req.body;
+    data.password = await cryptography.hash(data.password)
     User.create(data, (err, user) => {
       if (err) return res.status(400).json(err);
       else return res.status(201).json(user);
@@ -28,6 +30,9 @@ class UserController {
   async update(req, res){
     const data = req.body
     const _id = req.params.id
+    if (data.password) {
+      data.password = await cryptography.hash(data.password)
+    }
     User.findByIdAndUpdate(_id, data, {new: true},(err, user, x) => {
       if (err) return res.status(400).json(err);
       else if (user) return res.status(202).json(user);

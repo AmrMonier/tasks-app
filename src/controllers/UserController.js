@@ -13,8 +13,9 @@ class UserController {
   }
 
   async index(req, res) {
-    
-     return res.status(200).json({user: req.user});
+    let user = await req.user.populate('tasks')
+    console.log(user.tasks);
+     return res.status(200).json({user, tasks: user.tasks});
     
   }
 

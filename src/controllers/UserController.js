@@ -13,10 +13,9 @@ class UserController {
   }
 
   async index(req, res) {
-    User.findById(req.user._id,(err, user) => {
-      if (err) return res.status(400).json({err});
-      else return res.status(200).json({user});
-    })
+    
+     return res.status(200).json({user: req.user});
+    
   }
 
   
@@ -31,24 +30,22 @@ class UserController {
 
   async update(req, res){
     const data = req.body
-    const _id = req.params.id
+
     if (data.password) {
       data.password = await cryptography.hash(data.password)
     }
-    User.findByIdAndUpdate(_id, data, {new: true},(err, user, x) => {
-      if (err) return res.status(400).json({err});
-      else if (user) return res.status(202).json({user});
-      else return res.status(404).json()
-    })
+    let user = req.user
+    for(const key in data){
+      user[key] = data[key]
+    }
+    user.save()
+    return res.status(202).json({user});
   }
 
   async delete (req, res){
-    const _id = req.params.id
-    User.findByIdAndDelete(_id, (err, user)=> {
-      if (err) return res.status(400).json(err);
-      else if (user) return res.status(204).json();
-      else return res.status(404).json()
-    })
+    let user = req.user
+    user.remove()
+    return res.status(200).json({user})
   }
 }
 

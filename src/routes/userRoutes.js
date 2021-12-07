@@ -6,8 +6,7 @@ const routes = new Router();
 
 routes.post('/', UserController.create);
 routes.get('/me', authentication.isAuthenticated, UserController.index);
-routes.get('/:id', authentication.isAuthenticated, UserController.read);
-routes.put('/:id', authentication.isAuthenticated, UserController.update);
-routes.delete('/:id', authentication.isAuthenticated, UserController.delete);
+routes.put('/me', authentication.isAuthenticated, UserController.update);
+routes.delete('/me', authentication.isAuthenticated, UserController.delete);
 
 export default routes;

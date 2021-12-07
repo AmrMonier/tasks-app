@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 import cryptography from "../utilities/cryptography.js";
+import Task from './Task.js';
+
 const UserSchema = mongoose.Schema({
   name: {
     type: String,
@@ -49,6 +51,10 @@ UserSchema.virtual('tasks',{
   ref: 'Task',
   localField: '_id',
   foreignField: 'owner'
+})
+UserSchema.pre('remove',async function(next){
+  await Task.deleteMany({owner:this._id})
+  next()
 })
 
 export default mongoose.model("User", UserSchema);

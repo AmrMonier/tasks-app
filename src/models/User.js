@@ -45,4 +45,10 @@ UserSchema.methods.toJSON = function () {
   delete obj.__v
   return obj
 }
+UserSchema.virtual('tasks',{
+  ref: 'Task',
+  localField: '_id',
+  foreignField: 'owner'
+})
+
 export default mongoose.model("User", UserSchema);

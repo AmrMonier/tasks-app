@@ -5,7 +5,7 @@ class UserController {
     const data = req.body;
     data.password = await cryptography.hash(data.password)
     User.create(data, async (err, user) => {
-      if (err) return res.status(400).json(err);
+      if (err) return res.status(400).json({err});
       else {
         let token = await cryptography.generateJwtToken(user.toObject())       
         return res.status(201).json({user, token})};
@@ -14,7 +14,7 @@ class UserController {
 
   async index(req, res) {
     User.findById(req.user._id,(err, user) => {
-      if (err) return res.status(400).json(err);
+      if (err) return res.status(400).json({err});
       else return res.status(200).json({user});
     })
   }
@@ -23,8 +23,8 @@ class UserController {
   async read(req, res)  {
     const _id = req.params.id
     User.findById(_id, (err, user) => {
-      if (err) return res.status(400).json(err);
-      else if (user) return res.status(200).json(user);
+      if (err) return res.status(400).json({err});
+      else if (user) return res.status(200).json({user});
       else return res.status(404).json()
     })
   }
@@ -36,8 +36,8 @@ class UserController {
       data.password = await cryptography.hash(data.password)
     }
     User.findByIdAndUpdate(_id, data, {new: true},(err, user, x) => {
-      if (err) return res.status(400).json(err);
-      else if (user) return res.status(202).json(user);
+      if (err) return res.status(400).json({err});
+      else if (user) return res.status(202).json({user});
       else return res.status(404).json()
     })
   }

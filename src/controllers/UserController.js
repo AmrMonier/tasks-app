@@ -4,16 +4,18 @@ class UserController {
   async create(req, res) {
     const data = req.body;
     data.password = await cryptography.hash(data.password)
-    User.create(data, (err, user) => {
+    User.create(data, async (err, user) => {
       if (err) return res.status(400).json(err);
-      else return res.status(201).json(user);
+      else {
+        let token = await cryptography.generateJwtToken(user.toObject())       
+        return res.status(201).json({user, token})};
     });
   }
 
   async index(req, res) {
-    User.find({},(err, users) => {
+    User.findById(req.user._id,(err, user) => {
       if (err) return res.status(400).json(err);
-      else return res.status(200).json(users);
+      else return res.status(200).json({user});
     })
   }
 

@@ -9,7 +9,29 @@ class TaskController {
   }
 
   async index(req, res) {
-    Task.find({owner: req.user._id},(err, tasks) => {
+    let filter = {owner: req.user._id}
+    if (req.query.completed) {
+      if (req.query.completed === 'true') {
+        filter.completed = true
+      }
+      if (req.query.completed === 'false') {
+        filter.completed = false
+      }
+    }
+    let tasksQuery = Task.find(filter)
+    if(req.query.sortBy){
+      let sortObject = {}
+      let sortOptions = req.query.sortBy.split(':')
+      if (sortOptions[1] === 'asc') {
+        sortObject[sortOptions[0]] = 1
+        tasksQuery.sort(sortObject)
+      } else if(sortOptions[1] === 'desc'){
+        sortObject[sortOptions[0]] = -1
+        tasksQuery.sort(sortObject)  
+      }
+    }
+    
+    tasksQuery.exec((err, tasks) => {
       if (err) return res.status(400).json(err);
       else return res.status(200).json({tasks});
     })

@@ -48,6 +48,7 @@ UserSchema.methods.toJSON = function () {
   let obj = this.toObject()
   delete obj.password
   delete obj.__v
+  delete obj.avatar
   return obj
 }
 UserSchema.virtual('tasks',{

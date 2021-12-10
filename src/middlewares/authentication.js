@@ -2,8 +2,8 @@ import cryptography from '../utilities/cryptography.js'
 import User from '../models/User.js'
 export default {
      isAuthenticated: async (req, res, next) => {
-        let token = req.headers.authorization.split(' ')[1]
-        try {
+         try {
+            let token = req.headers.authorization.split(' ')[1]
             let user = await cryptography.verifyJwtToken(token) 
             if(user){
                 

@@ -1,15 +1,8 @@
 import multer from 'multer'
-import path from 'path'
-const avatarDiskStorage = multer.diskStorage({
-    destination: 'src/uploads/avatars',
-    filename(req,file,cb){
-        cb(null, Date.now() + path.extname(file.originalname))
-    },
-})
 
 export default {
     uploadAvatar: multer({
-        storage: avatarDiskStorage,
+        storage: multer.memoryStorage(),
         limits: {
             fileSize: 5000000
         },

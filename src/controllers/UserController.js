@@ -1,3 +1,7 @@
+import sharp from "sharp";
+import fs from "fs"
+import path from "path";
+
 import User from "../models/User.js";
 import cryptography from "../utilities/cryptography.js";
 class UserController {
@@ -48,9 +52,18 @@ class UserController {
     user.remove()
     return res.status(200).json({user})
   }
-  async uploadAvatar (req, res){
+  async uploadAvatar (req, res,next){
+
     const user = req.user
-    user.avatar = '/public/avatars/' + req.file.filename
+    const fileName = user._id + '.png'
+    
+    let buffer = await sharp(req.file.buffer).png().resize({width: 200, height: 200}).toBuffer()
+    fs.writeFile(path.join('src','uploads','avatars', fileName), buffer,(err) => {
+      if (err) {
+        return next(err)
+      }
+    })
+    user.avatar = '/public/avatars/' + fileName
     user.save()
     return res.json({user})
   }

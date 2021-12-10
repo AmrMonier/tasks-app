@@ -1,4 +1,7 @@
 # Project: Task Manager App
+
+[Live Preview](https://mon-task-manager.herokuapp.com)
+
 an API which provides the functionality of a TODO APP which is built using Node.js
 
 all the requests are not public and require you to have a Json Web Token to be able to access the the app. the Json Web Token can be obtained form the only two public end point the **Register** User which allow us to get a new account and the **Login** end point which authenticate users
@@ -241,7 +244,7 @@ and with 5MB as the maximum file size
 
 |Content-Type|Value|
 |---|---|
-|token|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW1pcmEgTW9uaWVyIiwiZW1haWwiOiJhLm1vbmllc3MxMDdAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAka2guUzBxbmR1RVhaUTVCdlBCRllQZWtLU3VJcm1NQ1RUQU5oVFZEdDFnY3ZwMkRLejF1RzIiLCJhZ2UiOjIzLCJfaWQiOiI2MWIzMWQ0NDFiZmM1ZDNmMmY1ZTI0YTgiLCJfX3YiOjAsImlhdCI6MTYzOTEyODM4OX0.SS15eBUj01plvdx70FQxORKfawfOyi8R4q0613Swn68|
+|||
 
 
 ### Body formdata

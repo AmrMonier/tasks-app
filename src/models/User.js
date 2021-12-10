@@ -30,7 +30,7 @@ const UserSchema = mongoose.Schema({
     default: 0
   },
   avatar: {
-    type: String
+    type: Buffer
   }
 });
 UserSchema.statics.findByCredentials = async function (email, password) {

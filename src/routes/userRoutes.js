@@ -10,5 +10,6 @@ routes.get('/me', authentication.isAuthenticated, UserController.index);
 routes.put('/me', authentication.isAuthenticated, UserController.update);
 routes.delete('/me', authentication.isAuthenticated, UserController.delete);
 routes.post('/me/avatar', authentication.isAuthenticated,upload.uploadAvatar.single('avatar'), UserController.uploadAvatar)
+routes.get('/me/avatar', authentication.isAuthenticated, UserController.getAvatar)
 
 export default routes;

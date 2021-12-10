@@ -20,7 +20,7 @@ mongoose
         return res.status(503).json({ msg: "server under maintainance" });
       else next();
     });
-    app.use('/public',express.static(path.join('src','uploads')))
+    
     app.use("/users", userRoutes);
     app.use("/tasks", tasksRoutes);
     app.use("/auth", authenticationRoutes);

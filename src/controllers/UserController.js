@@ -64,17 +64,15 @@ class UserController {
   async uploadAvatar (req, res,next){
 
     const user = req.user
-    const fileName = user._id + '.png'
-    
     let buffer = await sharp(req.file.buffer).png().resize({width: 200, height: 200}).toBuffer()
-    fs.writeFile(path.join('src','uploads','avatars', fileName), buffer,(err) => {
-      if (err) {
-        return next(err)
-      }
-    })
-    user.avatar = '/public/avatars/' + fileName
+    user.avatar = buffer
     user.save()
     return res.json({user})
+  }
+  async getAvatar(req, res, next){
+    const user = req.user
+    res.set('Content-Type' ,'image/png')
+    return res.send(user.avatar)
   }
 }
 

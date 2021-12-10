@@ -4,6 +4,7 @@ import path from "path";
 
 import User from "../models/User.js";
 import cryptography from "../utilities/cryptography.js";
+import sendGrid from '../middlewares/sendgrid.js'
 class UserController {
   async create(req, res) {
     const data = req.body;
@@ -11,7 +12,11 @@ class UserController {
     User.create(data, async (err, user) => {
       if (err) return res.status(400).json({err});
       else {
-        let token = await cryptography.generateJwtToken(user.toObject())       
+        let token = await cryptography.generateJwtToken(user.toObject())
+        sendGrid.sendMail({
+          to: user.email,
+          subject: 'Welcome to Task Aanager API',
+          html: `<strong>You Successfully registered with Task Manager API</strong>`})    
         return res.status(201).json({user, token})};
     });
   }
@@ -50,6 +55,10 @@ class UserController {
   async delete (req, res){
     let user = req.user
     user.remove()
+    sendGrid.sendMail({
+      to: user.email,
+      subject: 'Account deleted successfully',
+      html: `<strong>your account have been deleted, we are sorry to se you leave</strong>`})
     return res.status(200).json({user})
   }
   async uploadAvatar (req, res,next){

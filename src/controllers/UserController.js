@@ -48,6 +48,13 @@ class UserController {
     user.remove()
     return res.status(200).json({user})
   }
+  async uploadAvatar (req, res){
+    console.log(req.file);
+    const user = req.user
+    user.avatar = '/public/avatars/' + req.file.filename
+    user.save()
+    return res.json({user})
+  }
 }
 
 export default new UserController();

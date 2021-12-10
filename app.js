@@ -24,7 +24,10 @@ mongoose
     app.use("/users", userRoutes);
     app.use("/tasks", tasksRoutes);
     app.use("/auth", authenticationRoutes);
-
+    app.use((err, req, res, next) => {
+      res.status(400).json({err: err.message})
+    })
+    
     app.listen(PORT, () =>
       console.log(`App running on http://localhost:${PORT}`)
     );

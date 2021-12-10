@@ -2,6 +2,7 @@ import mongoose from "./src/middlewares/mongoose.js";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import path from 'path'
 
 import userRoutes from "./src/routes/userRoutes.js";
 import tasksRoutes from "./src/routes/tasksRoutes.js";
@@ -19,6 +20,7 @@ mongoose
         return res.status(503).json({ msg: "server under maintainance" });
       else next();
     });
+    app.use('/public',express.static(path.join('src','uploads')))
     app.use("/users", userRoutes);
     app.use("/tasks", tasksRoutes);
     app.use("/auth", authenticationRoutes);

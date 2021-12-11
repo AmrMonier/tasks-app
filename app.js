@@ -27,10 +27,10 @@ mongoose
         return res.status(503).json({ msg: "server under maintainance" });
       else next();
     });
-    app.use(mdRouter)
     app.use("/users", userRoutes);
     app.use("/tasks", tasksRoutes);
     app.use("/auth", authenticationRoutes);
+    app.use(mdRouter)
     app.use((err, req, res, next) => {
       res.status(400).json({err: err.message})
     })

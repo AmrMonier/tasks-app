@@ -43,10 +43,8 @@ Registering a new User Account
     "user": {
         "name": "Amira Monier",
         "email": "amira@task-manager.com",
-        "password": "$2b$10$.DCmellzlwAzDGuXebGioOacxuJX0YhIWocx1f4VbcSr79FRryJUC",
         "age": 23,
-        "_id": "61af14f335f31f20367b8f6f",
-        "__v": 0
+        "_id": "61af14f335f31f20367b8f6f"
     },
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW1pcmEgTW9uaWVyIiwiZW1haWwiOiJhbWlyYUB0YXNrLW1hbmFnZXIuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkLkRDbWVsbHpsd0F6REd1WGViR2lvT2FjeHVKWDBZaElXb2N4MWY0VmJjU3I3OUZScnlKVUMiLCJhZ2UiOjIzLCJfaWQiOiI2MWFmMTRmMzM1ZjMxZjIwMzY3YjhmNmYiLCJfX3YiOjAsImlhdCI6MTYzODg2NDExNX0.9CJ1AxJ1keic5_3oZ7inhTcl5dn_iYI9oQmVaoJWgEA"
 }

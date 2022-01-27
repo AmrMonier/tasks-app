@@ -1,4 +1,4 @@
-# Project: Task Manager App
+# Project: Task Manager App 😎😎😎😎
 
 [Live Preview](https://mon-task-manager.herokuapp.com)
 
